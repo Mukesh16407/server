@@ -69,3 +69,38 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
+
+// get current user
+exports.getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.body.userId });
+    res.send({
+      success: true,
+      message: "User fetched successfully",
+      data: user,
+    });
+  } catch (error) {
+    res.send({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
+// get all users except current user
+
+exports.getAllUserExceptCurrent = async (req, res) => {
+  try {
+    const allUsers = await User.find({ _id: { $ne: req.body.userId } });
+    res.send({
+      success: true,
+      message: "Users fetched successfully",
+      data: allUsers,
+    });
+  } catch (error) {
+    res.send({
+      message: error.message,
+      success: false,
+    });
+  }
+};

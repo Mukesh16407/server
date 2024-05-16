@@ -10,6 +10,7 @@ const {
   loginUser,
   getCurrentUser,
   getAllUserExceptCurrent,
+  updateProfilePicture,
 } = require("../controllers/userController");
 
 router.post("/register", createNewUser);

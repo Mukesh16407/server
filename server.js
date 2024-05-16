@@ -5,6 +5,8 @@ const cors = require("cors");
 const http = require("http");
 const dbConfig = require("./config/dbConfig");
 const usersRoute = require("./routes/usersRoute");
+const messageRoute = require("./routes/messagesRoute");
+const chatRoute = require("./routes/chatRouter");
 
 const port = process.env.PORT || 5000;
 
@@ -64,6 +66,8 @@ io.on("connection", (socket) => {
 });
 
 app.use("/api/users", usersRoute);
+app.use("/api/message", messageRoute);
+app.use("/api/chat", chatRoute);
 
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);

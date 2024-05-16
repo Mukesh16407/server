@@ -1,6 +1,7 @@
 const User = require("../models/userModal");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("../cloudinary");
 
 exports.createNewUser = async (req, res) => {
   try {

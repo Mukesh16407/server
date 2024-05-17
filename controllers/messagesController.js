@@ -27,3 +27,23 @@ exports.newMessage = async (req, res) => {
     });
   }
 };
+
+exports.getAllMessage = async (req, res) => {
+  try {
+    const messages = await Message.find({
+      chat: req.params.chatId,
+    }).sort({ createdAt: 1 });
+
+    res.send({
+      success: true,
+      message: "Messages fetched successfully",
+      data: messages,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: "Error fetching messages",
+      error: error.message,
+    });
+  }
+};
